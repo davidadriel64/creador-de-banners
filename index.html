@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="David">
+  <meta name="generator" content="version 1.0">
+  <title>Creador de banners y cupones</title>
+
+   <!-- Bootstrap -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  
+   <link rel="stylesheet" href="css/estilos.css">
+   <script src="js/filesaver.js" type="text/javascript"></script>
+   <script src="js/html2canvas.js" type="text/javascript"></script>    
+  
+   <script type="text/javascript">
+     $(function() { 
+         $("#crearimagen").click(function() { 
+             html2canvas($("#contenido"), {
+                 onrendered: function(canvas) {
+                     theCanvas = canvas;
+                     document.body.appendChild(canvas);
+
+                     canvas.toBlob(function(blob) {
+                       saveAs(blob, "cupon.png"); 
+                     });
+                 }
+             });
+         });
+     });
+   </script>
+<body cz-shortcut-listen="true">
+    
+  <main>
+    <div class="container py-4">
+      <header class="pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-columns-gap" viewBox="0 0 16 16">
+            <path d="M6 1v3H1V1h5zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12v3h-5v-3h5zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8v7H1V8h5zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6v7h-5V1h5zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"/>
+          </svg> <span class="fs-4 mx-3"> Creador de banners y cupones</span>
+        </a>
+      </header>
+  
+      <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">¿Cómo funciona?</h1>
+          <p class="col-md-8 fs-4">Muy facil!, selecciona las opciones y obvserva el cambio en tiempo real</p>
+         </div>
+      </div>
+  
+      <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+          <div class="h-100 p-5 text-bg-dark rounded-3">
+            <h2>Datos </h2>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Titulo</label>
+              <input type="text" class="form-control" value="50% OFF" name="" id="input" aria-describedby="emailHelp">
+             </div>
+             <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Subtitulo</label>
+              <input type="text" class="form-control" value="Super descuento semanal" name="" id="input2" aria-describedby="emailHelp">
+             </div>
+             <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Codigo</label>
+              <input type="text" class="form-control" value="CUP-2324RET34" name="" id="input3" aria-describedby="emailHelp">
+             </div>
+             <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Imagen</label>
+              <input type="file" class="form-control" value="https://lamason.shop/media/2022/07/Lamason-Shop-Light-2.png"  id="file" accept="image/*" onchange="mostrar()">
+             </div>
+             <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Color texto</label>
+              <input type="text" class="form-control" value="#fff" name="" id="colorTexto" aria-describedby="emailHelp">
+             </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="h-100 p-5 text-bg-dark rounded-3">
+            <h2>Fondo / layout</h2>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Color fondo</label>
+              <input type="text" class="form-control" value="#000" name="" id="colorFondo" aria-describedby="emailHelp">
+             </div>
+             <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Imagen de fondo</label>
+              <input type="file" class="form-control" value="https://lamason.shop/media/2022/07/Lamason-Shop-Light-2.png"  id="fileFondo" accept="image/*" onchange="mostrarFondo()">
+             </div>
+             <div class="mb-3">
+             <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fondoRadio1" value="option1">
+              <label class="form-check-label" for="inlineRadio1">Repetir fondo</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fondoRadio2" value="option2">
+              <label class="form-check-label" for="inlineRadio2">No repetir</label>
+            </div>
+            </div>
+            <div class="mb-3">
+              <div class="form-check form-check-inline">
+               <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="fondoRadio4" value="option1">
+               <label class="form-check-label" for="inlineRadio1">Cubirir fondo</label>
+             </div>
+             <div class="form-check form-check-inline">
+               <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="fondoRadio5" value="option2">
+               <label class="form-check-label" for="inlineRadio2">Contener fondo</label>
+             </div>
+             </div>
+             <div class="mb-3">
+             <label for="customRange1" class="form-label">Mover fondo a los lados</label>
+              <input type="range" class="form-range" id="customRange1">
+            </div>
+            <div class="mb-3">
+              <label for="customRange1" class="form-label">Mover fondo para arriba o abajo</label>
+               <input type="range" class="form-range" id="customRange2">
+             </div>
+          </div>
+        </div>
+
+      <div class="col-12 p-5 d-flex justify-content-center align-content-center">
+          <div class="card" id="contenido" style="background: #000;color:#fff;">
+            <h1 id="titulo">50% OFF</h1>
+            <span id="subtitulo">Super descuento semanal</span>
+            <span id="codigo">CUP-2324RET34</span>
+            <img id="img" width="300" alt="imagen" src="https://lamason.shop/media/2022/07/Lamason-Shop-Light-2.png" style="margin-top: 5px;"> 
+          </div>
+      </div>
+
+      <div class="col-12 p-5">
+        <button id="crearimagen" class="form-control btn btn-primary">Crear Imagen (descarga automatica)</button>
+      </div>
+   
+      <footer class="pt-3 mt-4 text-muted border-top">
+        © 2022 creado por david
+      </footer>
+    </div>
+  </main>
+  
+  <script src="js/script.js" type="text/javascript"></script>
+ 
+</body>
+</html>

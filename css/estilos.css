@@ -12,9 +12,8 @@ body {
 }
 
 .card {
+    cursor: pointer;
     width: 600px;
-    padding: 10px;
-    border-radius: 20px;
     border: none;
     height: 600px;
     display: flex;
@@ -33,3 +32,5 @@ body {
 .card span {
     font-size: 28px
 }
+
+

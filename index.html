@@ -4,141 +4,175 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="David">
-  <meta name="generator" content="version 1.0">
-  <title>Creador de banners y cupones</title>
+  <title>Creador de banners V1.5</title>
+  
+  <link rel="icon" type="image/x-icon" href="/img/favicon.png">
 
    <!-- Bootstrap -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
    
+   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
    <link rel="stylesheet" href="css/estilos.css">
    <script src="js/filesaver.js" type="text/javascript"></script>
    <script src="js/html2canvas.js" type="text/javascript"></script>    
-  
-   <script type="text/javascript">
-     $(function() { 
-         $("#crearimagen").click(function() { 
-             html2canvas($("#contenido"), {
-                 onrendered: function(canvas) {
-                     theCanvas = canvas;
-                     document.body.appendChild(canvas);
-
-                     canvas.toBlob(function(blob) {
-                       saveAs(blob, "cupon.png"); 
-                     });
-                 }
-             });
-         });
-     });
-   </script>
-<body cz-shortcut-listen="true">
-  <main>
-    <div class="container py-4">
-      <header class="pb-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-columns-gap" viewBox="0 0 16 16">
-            <path d="M6 1v3H1V1h5zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12v3h-5v-3h5zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8v7H1V8h5zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6v7h-5V1h5zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"/>
-          </svg> <span class="fs-4 mx-3"> Creador de banners y cupones</span>
-        </a>
-      </header>
-  
-      <div class="p-5 mb-4 text-bg-dark rounded-3">
-        <div class="container-fluid py-5">
-          <h1 class="display-5 fw-bold">¿Cómo funciona?</h1>
-          <p class="col-md-12 fs-4">1) Muy facil, selecciona los elementos y obvserva el cambio en tiempo real</p>
-          <p class="col-md-12 fs-4">2) Dentro del banner se pueden arrastrar los elementos </p>
-          <p class="col-md-12 fs-4">3) Cuando estes listo/a, da click en el boton "Crear imagen" y se descargara el banner en formato PNG</p>
-         </div>
-      </div>
-  
-      <div class="row align-items-md-stretch">
-        <div class="col-md-8 mb-3">
-          <div class="h-100 p-5 text-bg-dark rounded-3">
-            <div class="d-flex justify-content-between">
-            <h2>Elementos  </h2> 
-              <div>
-                  <button type="button" class="btn btn-primary" id="crearT">
-                    Crear texto<i class="bi bi-plus"></i>
-                      </button>
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">
-                    Crear imagen<i class="bi bi-plus"></i>
-                   </button>
-                </div>
-              </div>
-                  <div class="mb-3" id="input">
-                </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="h-100 p-5 text-bg-dark rounded-3">
-            <h2>Fondo </h2>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Color fondo</label>
-              <input type="text" class="form-control" value="#000" name="" id="colorFondo" aria-describedby="emailHelp">
-             </div>
-             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Imagen de fondo</label>
-              <input type="file" class="form-control"  id="fileFondo" accept="image/*" onchange="colocarFondo()">
-             </div>
-             <div class="mb-3">
-             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fondoRadio1" value="option1">
-              <label class="form-check-label" for="inlineRadio1">Repetir fondo</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fondoRadio2" value="option2">
-              <label class="form-check-label" for="inlineRadio2">No repetir</label>
-            </div>
-            </div>
-            <div class="mb-3">
-              <div class="form-check form-check-inline">
-               <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="fondoRadio4" value="option1">
-               <label class="form-check-label" for="inlineRadio1">Cubirir fondo</label>
-             </div>
-             <div class="form-check form-check-inline">
-               <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="fondoRadio5" value="option2">
-               <label class="form-check-label" for="inlineRadio2">Contener fondo</label>
-             </div>
-             </div>
-             <div class="mb-3">
-             <label for="customRange1" class="form-label">Mover fondo a los lados</label>
-              <input type="range" class="form-range" id="customRange1">
-            </div>
-            <div class="mb-3">
-              <label for="customRange1" class="form-label">Mover fondo para arriba o abajo</label>
-               <input type="range" class="form-range" id="customRange2">
-             </div>
-             <div class="mb-3">
-              <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  Medidas del banner
-                </button>
-                <ul class="dropdown-menu">
-                  <li><button class="dropdown-item" id="medida1" type="button">600x600</button></li>
-                  <li><button class="dropdown-item" id="medida2" type="button">300x300</button></li>
-                  <li><button class="dropdown-item" id="medida3" type="button">1024x600</button></li>
-                  <li><button class="dropdown-item" id="medida4" type="button">1600x600</button></li>
-                </ul>
-              </div>
-             </div>
-          </div>
-        </div>
-        <div class="col-12 d-flex justify-content-center align-content-center">
-            <div class="card" id="contenido" style="background: #000;color:#fff;">
-                </div>
-            </div>
-            <div class="col-12 p-5">
-              <button id="crearimagen" class="form-control btn btn-primary">Crear Imagen (descarga automatica)</button>
-            </div>
    
-      <footer class="pt-3 mt-4 text-muted border-top">
-        © 2022 creado por david
-      </footer>
+<body cz-shortcut-listen="true">
+    <header class="navbar navbar-dark flex-md-nowrap p-0 shadow" style="height: 60px;">
+      <a class="navbar-brand col-md-4 col-lg-3 me-0 px-3 fs-6 d-flex " href="#">
+        <div class="d-flex justify-content-center align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-columns-gap" viewBox="0 0 16 16">
+        <path d="M6 1v3H1V1h5zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12v3h-5v-3h5zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8v7H1V8h5zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6v7h-5V1h5zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"></path>
+      </svg> <span class="fs-5 mx-2"> Creador de banners V1.5</span>
+      </div></a>
+      <div class="navbar-nav mx-3">
+        <div class="nav-item ">
+          <button class="form-control btn btn-outline-light px-3" data-bs-toggle="modal" data-bs-target="#guardarModal" >Guardar imagen</button>
+        </div>
+      </div>
+    </header>
+   
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebarMenu" class="col-md-4 col-lg-3 d-md-block bg-new sidebar collapse">
+          <div class="position-sticky pt-3 sidebar-sticky">
+          <div>
+            <button type="button" class="btn btn-outline-light mx-1" id="crearT"><i class='bi bi-fonts'></i> Texto</button>
+            <button type="button" class="btn btn-outline-light mx-1" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-card-image"></i> Imagen</button>
+            </div>
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-1 text-muted text-uppercase">
+              <span>Elementos </span>
+                <a class="link-secondary" aria-label="Add a new report">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              </a>
+            </h6>
+            <div class="mb-3 mt-3" id="input">
+            </div>
+          </div>
+        </nav>
 
-      <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="Modal" aria-hidden="true">
-        <div class="modal-dialog">
+        <main class="col-md-8 ms-sm-auto col-lg-9 px-0">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border" style="border-color: #000!important;background-color: #000000;">
+             <div class="btn-toolbar mb-2 mb-md-0">
+              <div class=" me-2">
+                <button type="button" class="btn mx-2 btnBlanco" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMedidas" aria-controls="offcanvasMedidas"><i class="bi bi-aspect-ratio"></i> Cambiar medidas</button>
+                  <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasMedidas" aria-labelledby="offcanvasMedidas">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasMedidas"><i class="bi bi-aspect-ratio"></i> Cambiar medidas</h5>
+                      <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Ancho</span>
+                            <input type="number" class="form-control" id="ancho" placeholder="600" aria-label="Ancho" aria-describedby="basic-addon1">
+                            <span class="input-group-text" id="basic-addon1">px</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Alto</span>
+                            <input type="number" class="form-control" id="alto" placeholder="600" aria-label="Alto" aria-describedby="basic-addon1">
+                            <span class="input-group-text" id="basic-addon1">px</span>
+                        </div>
+                        <div class="input-group mb-3">
+                          <button type="button" class="btn btn-outline-light" id="cambiarMedidas">Cambiar medidas</button>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+             </div>
+             <div class="btn-toolbar mt-2 mb-md-0">
+                    <label for="zoom" class="form-label mx-2 text-light">Zoom</label>
+                        <div class=" me-2">
+                    <input type="range" class="form-range" value="60" min="25" max="80" id="zoom">
+                </div>
+               </div>
+             <div class="btn-toolbar mb-2 mb-md-0">
+                <div class=" me-2">
+                  <button type="button" class="btn btnBlanco mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFondo" aria-controls="offcanvasFondo"><i class="bi bi-pencil-square"></i> Editar Fondo</button>
+                  <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasFondo" aria-labelledby="offcanvasFondo">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasFondo"><i class="bi bi-pencil-square"></i> Editar fondo</h5>
+                      <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Color fondo</label>
+                            <input type="text" class="form-control" value="#fff" name="" id="colorFondo" >
+                           </div>
+                           <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Imagen de fondo</label>
+                                <input type="file" class="form-control"  id="fileFondo" accept="image/*" onchange="colocarFondo()">
+                           </div>
+                           <div class="mb-3">
+                            <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fondoRadio1" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">Repetir fondo</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fondoRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">No repetir</label>
+                          </div>
+                          </div>
+                          <div class="mb-3">
+                            <div class="form-check form-check-inline">
+                             <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="fondoRadio4" value="option1">
+                             <label class="form-check-label" for="inlineRadio1">Cubirir fondo</label>
+                           </div>
+                           <div class="form-check form-check-inline">
+                             <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="fondoRadio5" value="option2">
+                             <label class="form-check-label" for="inlineRadio2">Contener fondo</label>
+                           </div>
+                           </div>
+                           <div class="mb-3">
+                           <label for="customRange1" class="form-label">Mover fondo a los lados</label>
+                            <input type="range" class="form-range" value="0" id="customRange1">
+                          </div>
+                          <div class="mb-3">
+                            <label for="customRange1" class="form-label">Mover fondo para arriba o abajo</label>
+                             <input type="range" class="form-range" value="0" id="customRange2">
+                           </div>
+                           <div class="mb-3">
+                            <button type="button" class="btn btn-outline-danger" id="eliminarFondo">Eliminar imagen fondo</button>
+                           </div>
+                    </div>
+                  </div>
+                </div>
+               </div>
+          </div>
+            <div class="d-flex justify-content-center align-content-center align-items-center" style="height: 77vh!important;">
+                 <div class="cards" id="contenido" style="background: #fff;color:#000;zoom: 60%;">
+                </div>
+            </div>
+            <footer class="mx-4 text-muted">
+              © 2022 creado por david
+            </footer>
+        </main>
+      </div>
+    </div>
+    <div id="offcanvasImagenid">  
+    </div>
+    <div id="offcanvasTextoid">  
+    </div>
+    <div class="modal fade" id="guardarModal" tabindex="-1" aria-labelledby="guardarModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Seleccionar formato</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex justify-content-center align-content-center">
+            <button id="guardarFondo" type="button" class="btn btn-dark mx-1">PNG con fondo</button>
+            <button id="guardarTransparente" type="button" class="btn btn-dark mx-1">PNG transparente </button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="Modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="Modal">Cargar imagen</h1>
@@ -156,11 +190,6 @@
           </div>
         </div>
       </div>
-
-    </div>
-  </main>
-  
-  <script src="js/script.js" type="text/javascript"></script>
- 
+<script src="js/script.js" type="text/javascript"></script>
 </body>
 </html>

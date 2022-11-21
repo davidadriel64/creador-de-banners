@@ -3,15 +3,28 @@ canvas {
     margin-top: 10px;
 }
 
+header {
+    background: #624be2!important;
+}
+
 #img-out {
 	margin-top: 13px;
 }
 
 body {
-    background: #eee
+    background: #0d1216;
+    height: 100vh;
+}
+#sidebarMenu {
+    height: 695px;
 }
 
-.card {
+.bg-new{
+    background: #252627;
+}
+
+.cards {
+    overflow: hidden;
     cursor: pointer;
     width: 600px;
     border: none;
@@ -21,16 +34,31 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
 }
 
 
-.card h1 {
+.cards h1 {
     font-size: 48px;
     margin-bottom: 0px
 }
 
-.card span {
+.cards span {
     font-size: 28px
 }
 
+.offcanvas-backdrop.show {
+    opacity: 0;
+}
 
+.btnBlanco{
+    background:#000;
+    color: #fff;
+}
+
+.btnBlanco:hover{
+    color: #CCC;
+}

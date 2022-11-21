@@ -62,3 +62,11 @@ body {
 .btnBlanco:hover{
     color: #CCC;
 }
+
+div#contenido p:hover{
+    border:#624be2 1px outset;
+}
+
+div#contenido img:hover{
+    border: #624be2 1px outset;
+}

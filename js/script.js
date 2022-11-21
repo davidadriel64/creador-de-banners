@@ -54,6 +54,7 @@ function colocarFondo(){
         img.src = reader.result;
         img.width = 300;
         img.id = elemento;
+        img.className = "imagen"+elemento;
         img.style.zIndex = 0;
         document.getElementById("contenido").appendChild(img);
         MoverLibrementeConElMouse(elemento);
@@ -62,9 +63,9 @@ function colocarFondo(){
         let div = document.createElement("div");
           div.id = "divImagen"+elemento;
           div.innerHTML = `
-          <div class='input-group mb-3'><span class='input-group-text' id='basic-addon1' ><i class="bi bi-card-image"></i></span><input type='text' class='form-control' value='Imagen' name='' id='imagen`+id+`' disabled >
-          <button class='btn btn-danger mx-1' id='imagenE`+id+`' type='button'><i class='bi bi-trash'></i></button>
-          <button class='btn btn-light' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasImagenid`+id+`" aria-controls="offcanvasImagenid`+id+`"><i class='bi bi-pen'></i></button>`;
+          <div class='input-group mb-3'><span class='input-group-text text-bg-dark' id='basic-addon1' ><i class="bi bi-card-image"></i></span><input type='text' class='form-control text-bg-dark' value='Imagen' name='' id='imagen`+id+`' disabled >
+          <button class='btn btn-dark mx-1' id='imagenE`+id+`' type='button'><i class='bi bi-trash'></i></button>
+          <button class='btn btn-dark' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasImagenid`+id+`" aria-controls="offcanvasImagenid`+id+`"><i class='bi bi-pen'></i></button>`;
           
         document.getElementById("input").appendChild(div);
         document.getElementById("imagenE"+id).addEventListener("click", eliminarImagen);
@@ -84,7 +85,8 @@ function colocarFondo(){
             <input type='range' value='0'  class='form-range'  id='imagenT`+id+`' style="background-color: #ffffff12;border-radius: 4px;padding: 11px; "></div>
           </div>
           </div>
-          </div> `;
+          </div> 
+          `;
           off.id = "offcanvasImagenContenedor"+id;
             document.getElementById("offcanvasImagenid").appendChild(off); 
             document.getElementById("imagenT"+id).addEventListener("input", tamañoImagen);
@@ -102,6 +104,7 @@ function colocarFondo(){
       texto.style.padding = "10px";
       texto.style.fontSize = "20px";
       texto.innerHTML = "Texto";
+      texto.className = "texto"+elemento;
 
       document.getElementById("contenido").appendChild(texto);
       MoverLibrementeConElMouse(elemento);
@@ -112,19 +115,17 @@ function colocarFondo(){
           div.className = "input-group";
           div.innerHTML = ` 
           <div class='input-group mb-3'>
-          <span class='input-group-text' id='basic-addon1'><i class='bi bi-fonts'></i></span>
-          <input type='text' class='form-control' value='Texto' id='texto' disabled>
-          <button class='btn btn-danger mx-1' id='textoE`+id+`' type='button'><i class='bi bi-trash'></i></button> 
-          <button class='btn btn-light' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasTextoid`+id+`" aria-controls="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i></button>`;
+          <span class='input-group-text text-bg-dark id='basic-addon1'><i class='bi bi-fonts'></i></span>
+          <input type='text' class='form-control text-bg-dark texto`+id+`' value='Texto' id='inputTexto`+id+`' disabled>
+          <button class='btn btn-dark mx-1' id='textoE`+id+`' type='button'><i class='bi bi-trash'></i></button> 
+          <button class='btn btn-dark' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasTextoid`+id+`" aria-controls="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i></button>`;
 
           document.getElementById("input").appendChild(div);
-          document.getElementById("texto").addEventListener("keyup", escribirTexto);
           document.getElementById("textoE"+id).addEventListener("click", eliminar);
   
             let off = document.getElementById("offcanvasTextoid");
             off = document.createElement("div");
-            off.innerHTML = `
-            <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasTextoid`+id+`" aria-labelledby="offcanvasTextoid`+id+`">
+            off.innerHTML = `<div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasTextoid`+id+`" aria-labelledby="offcanvasTextoid`+id+`">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i> Editar texto</h5>
             <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -157,7 +158,7 @@ function colocarFondo(){
             <textarea class="form-control" placeholder="Texto" id="texto`+id+`" style="height: 100px"></textarea>
           </div>
           </div>
-          </div> `;
+          </div>`;
           off.id = "offcanvasTextoContenedor"+id;
             document.getElementById("offcanvasTextoid").appendChild(off); 
 
@@ -196,8 +197,9 @@ function colocarFondo(){
   }
 
   function escribirTexto(){
-    let texto = document.getElementById(this.id).value;
-    document.getElementById(this.id.replace("texto", "")).innerHTML = texto;
+    let id = this.id.substring(5);
+    document.getElementById(id).innerHTML = this.value;
+    document.getElementById("inputTexto"+id).value = this.value;
   }
 
   function tamañoImagen(){
@@ -358,6 +360,12 @@ function eliminarFondo(){
   document.getElementById("contenido").style.backgroundImage = "none";
 }
 
+
+function HoverborderSeleccionado(){
+  let elemento = this.id;
+  let id = elemento.replace("border", "");
+  document.getElementById(id).style.border = "1px solid black";
+}
 
 // Eventos
 

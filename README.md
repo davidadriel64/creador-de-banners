@@ -1,9 +1,9 @@
-# Crea cupones y banners
+# Creador de banners
 
 1) Drag and drop
 
 2) Crear elementos y eliminarlos
-
+Cancel changes
 3) Medidas del banner
 
 4) Editar fondo

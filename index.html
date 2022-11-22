@@ -13,9 +13,13 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
    
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Lato&family=Lobster&family=Montserrat&family=Oswald&family=Poppins&family=Raleway&family=Roboto&display=swap" rel="stylesheet">
+
    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
    <link rel="stylesheet" href="css/estilos.css">
@@ -30,11 +34,18 @@
         <path d="M6 1v3H1V1h5zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12v3h-5v-3h5zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8v7H1V8h5zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6v7h-5V1h5zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"></path>
       </svg> <span class="fs-5 mx-2"> Creador de banners V1.5</span>
       </div></a>
-      <div class="navbar-nav mx-3">
-        <div class="nav-item ">
-          <button class="form-control btn btn-outline-light px-3" data-bs-toggle="modal" data-bs-target="#guardarModal" >Guardar imagen</button>
-        </div>
-      </div>
+      <div class="dropstart mx-2">
+        <button class="btn btn-outline-light px-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Guardar como
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><h6 class="dropdown-header">Formato </h6></li>
+          <li><a class="dropdown-item p-2" id="guardarTransparente" type="button" ><span class="badge text-bg-light mx-2">PNG</span> transparente </a></li>
+          <li><a class="dropdown-item p-2" id="guardarFondo" type="button" ><span class="badge text-bg-light mx-2">PNG</span> con fondo </a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item p-2" id="guardarJpg" type="button" ><span class="badge text-bg-light mx-2">JPG</span> con fondo </a></li>
+        </ul>
+    </div>
     </header>
    
     <div class="container-fluid">
@@ -43,7 +54,7 @@
           <div class="position-sticky pt-3 sidebar-sticky">
           <div>
             <div class="d-grid gap-2">
-              <button class="btn btn-primary mx-1 btnPrimary" data-bs-toggle="modal" data-bs-target="#guardarModal">Guardar imagen</button>
+              <button class="btn btn-primary mx-1 mt-1 btnPrimary"" type="button" data-bs-toggle="offcanvas" data-bs-target="#presets" aria-controls="presets"> Cargar Preset</button>
               <button class="btn btn-outline-light mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasElemento" aria-controls="offcanvasElemento" type="button">Agregar elemento</button>
             </div>
             <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasElemento" aria-labelledby="offcanvasElemento">
@@ -102,7 +113,7 @@
              <div class="btn-toolbar mt-2 mb-md-0">
                     <label for="zoom" class="form-label mx-2 text-light">Zoom</label>
                         <div class=" me-2">
-                    <input type="range" class="form-range" value="60" min="25" max="80" id="zoom">
+                    <input type="range" class="form-range" value="60" min="25" max="100" id="zoom">
                 </div>
                </div>
              <div class="btn-toolbar mb-2 mb-md-0">
@@ -172,20 +183,21 @@
     </div>
     <div id="offcanvasTextoid">  
     </div>
-    <div class="modal fade" id="guardarModal" tabindex="-1" aria-labelledby="guardarModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Seleccionar formato</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body d-flex justify-content-center align-content-center">
-            <button id="guardarFondo" type="button" class="btn btn-dark mx-1">PNG con fondo</button>
-            <button id="guardarTransparente" type="button" class="btn btn-dark mx-1">PNG transparente </button>
-        </div>
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="presets" aria-labelledby="presets">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="presets"><i class="bi bi-layout-text-sidebar-reverse"></i> Cargar Preset</h5>
+        <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+        <span>Fondos 600x600</span>
+        </h6>
+          <img class="preset img-fluid" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFondo" aria-controls="offcanvasFondo" id="preset1" src="/img/preset1.png" class="card-img-top" style="height:100px; width:100px;" alt="...">
+          <img class="preset img-fluid" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFondo" aria-controls="offcanvasFondo" id="preset2" src="/img/preset2.png" class="card-img-top" style="height:100px; width:100px;" alt="...">
+          <img class="preset img-fluid" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFondo" aria-controls="offcanvasFondo"id="preset3" src="/img/preset3.png" class="card-img-top" style="height:100px; width:100px;" alt="...">
+          
       </div>
     </div>
-  </div>
     <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="Modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">

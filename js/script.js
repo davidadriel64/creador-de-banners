@@ -166,7 +166,43 @@ function colocarFondo(){
             <button class='btn btn-light' id='textoB`+id+`' type='button'><i class='bi bi-type-bold'></i></button>
             <button class='btn btn-light' id='textoS`+id+`' type='button'><i class='bi bi-type-strikethrough'></i></button>
             <button class='btn btn-light' id='textoU`+id+`' type='button'><i class='bi bi-type-underline'></i></button>
+            <button class='btn btn-light' id='textoI`+id+`' type='button'><i class='bi bi-type-italic'></i></button>
             <input type='color' class='form-control form-control-color' id='colorInput`+id+`' value='#000000' title='Color' style='max-width: 50px;'>
+            </div>
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+            <span>Tipografia</span>
+            </h6>
+            <div class="d-flex">
+            <select class="form-select" aria-label="" id='textoF`+id+`'>
+            <option selected>Seleccione una fuente</option>
+            <option value="Roboto">Roboto</option>
+            <option value="Poppins">Poppins</option>
+            <option value="Lato">Lato</option>
+            <option value="Oswald">Oswald</option>
+            <option value="Raleway">Raleway</option>
+            <option value="Open Sans">Open Sans</option>
+            <option value="Montserrat">Montserrat</option>
+            <option value="Lobster">Lobster</option>
+            <option value="Arial">Arial</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Impact">Impact</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Lucida Console">Lucida Console</option>
+            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+            <option value="Palatino Linotype">Palatino Linotype</option>
+            <option value="Book Antiqua">Book Antiqua</option>
+            <option value="Garamond">Garamond</option>
+            <option value="MS Sans Serif">MS Sans Serif</option>
+            <option value="MS Serif">MS Serif</option>
+            <option value="Symbol">Symbol</option>
+            <option value="Webdings">Webdings</option>
+            <option value="Wingdings">Wingdings</option>
+            </select>
             </div>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
             <span>Editar texto</span>
@@ -178,6 +214,7 @@ function colocarFondo(){
           off.id = "offcanvasTextoContenedor"+id;
             document.getElementById("offcanvasTextoid").appendChild(off); 
 
+            document.getElementById("textoI"+id).addEventListener("click", italic);
             document.getElementById("textoS"+id).addEventListener("click", textoTachado);
             document.getElementById("textoU"+id).addEventListener("click", textoSubrayado);
             document.getElementById("texto"+id).addEventListener("keyup", escribirTexto);
@@ -189,15 +226,20 @@ function colocarFondo(){
             document.getElementById("textoTP"+id).addEventListener("click", textoPeque);
             document.getElementById("textoTM"+id).addEventListener("click", textoMediano);
             document.getElementById("textoTG"+id).addEventListener("click", textoGrande);
+            document.getElementById("textoF"+id).addEventListener("change", cambiarFuente);
 
         mensaje("Elemento Texto creado");
   
   }
 
-  function activarEdicion(){
-    alert("hola");
+  function italic(){
+    let id = this.id.substring(6);
+    if(document.getElementById(id).style.fontStyle == "oblique"){
+      document.getElementById(id).style.fontStyle = "none";
+    }else{
+      document.getElementById(id).style.fontStyle = "oblique";
+    }
   }
-
   function textoTachado(){
     let id = this.id.substring(6);
     if(document.getElementById(id).style.textDecoration == "line-through"){
@@ -373,19 +415,52 @@ contenido = document.getElementById("contenido").style.background = colorFondo.v
             })
         });
   }
-  
 
+  function guardarCanvaEnJpg(){
+    html2canvas(document.querySelector("#contenido")).then(canvas => {
+      canvas.toBlob(function(blob) {
+      saveAs(blob, "banner(con fondo).jpg");
+    }, "image/jpeg", 1);
+
+      Swal.fire({
+        title: 'Imagen guardada',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+    });
+}
+
+
+function cambiarFuente(){
+  let elemento = this.id;
+  let id = elemento.replace("textoF", "");
+  let fuente = document.getElementById("textoF"+id).value;
+  document.getElementById(id).style.fontFamily = fuente;
+}
 
 function eliminarFondo(){
   document.getElementById("contenido").style.backgroundImage = "none";
 }
 
-
-function HoverborderSeleccionado(){
-  let elemento = this.id;
-  let id = elemento.replace("border", "");
-  document.getElementById(id).style.border = "1px solid black";
+function preset1(){
+  document.getElementById("contenido").style.backgroundImage = "url('/img/preset1.png')";
+  mensaje("Preset 1 cargado");
 }
+
+function preset2(){
+  document.getElementById("contenido").style.backgroundImage = "url('/img/preset2.png')";
+  mensaje("Preset 2 cargado");
+}
+
+function preset3(){
+  document.getElementById("contenido").style.backgroundImage = "url('/img/preset3.png')";
+  mensaje("Preset 3 cargado");
+}
+
 
 // Eventos
 
@@ -398,6 +473,14 @@ let cambiarMedidas = document.getElementById("cambiarMedidas").addEventListener(
 let botonGuardarFondo = document.getElementById("guardarFondo").addEventListener("click", guardarFondo);
 
 let botonGuardarTransparente = document.getElementById("guardarTransparente").addEventListener("click", guardarTransparente);
+
+let botonGuardarJpg = document.getElementById("guardarJpg").addEventListener("click", guardarCanvaEnJpg);
+
+let botonPreset1 = document.getElementById("preset1").addEventListener("click", preset1);
+
+let botonPreset2 = document.getElementById("preset2").addEventListener("click", preset2);
+
+let botonPreset3 = document.getElementById("preset3").addEventListener("click", preset3);
 
 colorFondo.oninput = function() {
   document.getElementById("contenido").style.background = this.value;

@@ -1,10 +1,13 @@
+:root{
+    --primary: #624be2!important;
+}
 canvas {
     margin-left: 7%;
     margin-top: 10px;
 }
 
 header {
-    background: #624be2!important;
+    background: var(--primary)!important;
 }
 
 #img-out {
@@ -63,17 +66,15 @@ body {
     color: #CCC;
 }
 
-div#contenido p:hover{
-    border:#624be2 1px outset;
+div#contenido div:hover{
+    border: var(--primary) 1px outset;
 }
 
 div#contenido img:hover{
-    border: #624be2 1px outset;
+    border: var(--primary) 1px outset;
 }
 
-:root{
-    --primary: #624be2!important;
-}
+
 
 .btnPrimary {
     background: var(--primary);

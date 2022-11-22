@@ -26,6 +26,4 @@
 
 13) Los elementos cambian el texto tambien en el sidebar 
 
-14) Fondo con zoom
-
 

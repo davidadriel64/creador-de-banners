@@ -70,3 +70,17 @@ div#contenido p:hover{
 div#contenido img:hover{
     border: #624be2 1px outset;
 }
+
+:root{
+    --primary: #624be2!important;
+}
+
+.btnPrimary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btnPrimary:hover {
+    background: #fff;
+    color: #000;
+}

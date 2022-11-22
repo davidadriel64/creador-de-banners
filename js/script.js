@@ -28,6 +28,7 @@ function MoverLibrementeConElMouse(e) {
     elemento.style.position = 'absolute';
     elemento.style.top = (e.clientY - posicionY) / zoom * 100 + 'px';
     elemento.style.left = (e.clientX - posicionX) / zoom * 100 + 'px';
+    elemento.style.right = '-'+ (e.clientX - posicionX) / zoom * 100 + 'px';
   }
 }
 
@@ -99,7 +100,7 @@ function colocarFondo(){
   function crearTexto(){
 
   let elemento = id+1;
-  let texto = document.createElement("p");
+  let texto = document.createElement("div");
       texto.id = elemento;
       texto.style.padding = "10px";
       texto.style.fontSize = "20px";
@@ -198,7 +199,7 @@ function colocarFondo(){
 
   function escribirTexto(){
     let id = this.id.substring(5);
-    document.getElementById(id).innerHTML = this.value;
+    document.getElementById(id).innerHTML = this.value.replace(/\n|\r/g, "<br>");;
     document.getElementById("inputTexto"+id).value = this.value;
   }
 

@@ -42,13 +42,28 @@
         <nav id="sidebarMenu" class="col-md-4 col-lg-3 d-md-block bg-new sidebar collapse">
           <div class="position-sticky pt-3 sidebar-sticky">
           <div>
-            <button type="button" class="btn btn-outline-light mx-1" id="crearT"><i class='bi bi-fonts'></i> Texto</button>
-            <button type="button" class="btn btn-outline-light mx-1" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-card-image"></i> Imagen</button>
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary mx-1 btnPrimary" data-bs-toggle="modal" data-bs-target="#guardarModal">Guardar imagen</button>
+              <button class="btn btn-outline-light mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasElemento" aria-controls="offcanvasElemento" type="button">Agregar elemento</button>
             </div>
+            <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasElemento" aria-labelledby="offcanvasElemento">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasElemento"><i class="bi bi-grid-3x3-gap"></i> Agregar elemento</h5>
+                <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <div class="d-grid gap-2">
+                  <button  type="button" class="btn btn-outline-light mx-1"  id="crearT"><i class='bi bi-fonts'></i> Crear Texto</button>
+                  <button type="button" class="btn btn-outline-light mx-1" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-card-image"></i> Crear Imagen</button>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <hr class="text-bg-dark my-4">
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-1 text-muted text-uppercase">
               <span>Elementos </span>
                 <a class="link-secondary" aria-label="Add a new report">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle align-text-bottom" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                  <i class="bi bi-grid-3x3-gap"></i>
               </a>
             </h6>
             <div class="mb-3 mt-3" id="input">

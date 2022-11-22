@@ -28,7 +28,7 @@ function MoverLibrementeConElMouse(e) {
     elemento.style.position = 'absolute';
     elemento.style.top = (e.clientY - posicionY) / zoom * 100 + 'px';
     elemento.style.left = (e.clientX - posicionX) / zoom * 100 + 'px';
-    elemento.style.right = '-'+ (e.clientX - posicionX) / zoom * 100 + 'px';
+    elemento.style.right = - (e.clientX - posicionX) / zoom * 100 + 'px';
   }
 }
 
@@ -66,10 +66,15 @@ function colocarFondo(){
           div.innerHTML = `
           <div class='input-group mb-3'><span class='input-group-text text-bg-dark' id='basic-addon1' ><i class="bi bi-card-image"></i></span><input type='text' class='form-control text-bg-dark' value='Imagen' name='' id='imagen`+id+`' disabled >
           <button class='btn btn-dark mx-1' id='imagenE`+id+`' type='button'><i class='bi bi-trash'></i></button>
-          <button class='btn btn-dark' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasImagenid`+id+`" aria-controls="offcanvasImagenid`+id+`"><i class='bi bi-pen'></i></button>`;
+          <button class='btn btn-dark' id='imagenEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasImagenid`+id+`" aria-controls="offcanvasImagenid`+id+`"><i class='bi bi-pen'></i></button>`;
           
         document.getElementById("input").appendChild(div);
         document.getElementById("imagenE"+id).addEventListener("click", eliminarImagen);
+        document.getElementById(id).addEventListener("dblclick", abrirEditor);
+      
+      function abrirEditor() {
+        document.getElementById("imagenEdit"+elemento).click();
+      }
         
         let off = document.getElementById("offcanvasImagenid");
             off = document.createElement("div");
@@ -100,15 +105,25 @@ function colocarFondo(){
   function crearTexto(){
 
   let elemento = id+1;
-  let texto = document.createElement("div");
+  let div1 = document.createElement("div");
+      div1.id = "div"+elemento;
+  let texto = document.createElement("p");
       texto.id = elemento;
       texto.style.padding = "10px";
       texto.style.fontSize = "20px";
       texto.innerHTML = "Texto";
       texto.className = "texto"+elemento;
+      texto.style.position = "absolute";
 
-      document.getElementById("contenido").appendChild(texto);
-      MoverLibrementeConElMouse(elemento);
+      document.getElementById("contenido").appendChild(div1);
+      div1.appendChild(texto);
+      document.getElementById("div"+elemento).addEventListener("dblclick", abrirEditor);
+      
+      function abrirEditor() {
+        document.getElementById("textoEdit"+elemento).click();
+      }
+
+      MoverLibrementeConElMouse("div"+elemento);
       id = elemento;
 
         let div = document.createElement("div");
@@ -177,6 +192,10 @@ function colocarFondo(){
 
         mensaje("Elemento Texto creado");
   
+  }
+
+  function activarEdicion(){
+    alert("hola");
   }
 
   function textoTachado(){

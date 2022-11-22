@@ -1,3 +1,24 @@
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8f8f8f #252627;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #252627;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #8f8f8f;
+    border-radius: 20px;
+    border: 3px solid #252627;
+  }
+
 :root{
     --primary: #624be2!important;
 }
@@ -19,6 +40,7 @@ body {
     height: 100vh;
 }
 #sidebarMenu {
+    overflow: auto;
     height: 695px;
 }
 

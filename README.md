@@ -26,4 +26,10 @@
 
 13) Los elementos cambian el texto tambien en el sidebar 
 
+14) Guardar y cargar datos (Textos)
+
+15) Guardado automatico de textos (falta fondos y imagenes) (puede fallar)
+
+
+
 

@@ -41,7 +41,7 @@ body {
 }
 #sidebarMenu {
     overflow: auto;
-    height: 695px;
+    height: calc(100vh - 60px);
 }
 
 .bg-new{

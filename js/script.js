@@ -3,7 +3,23 @@
 
 Swal.fire('Bienvenid@s al creador de banners', 'Para comenzar a crear un banner, debes seleccionar un tamaño de banner (por defecto esta en 600x600)', 'info');
 
-id = 1;
+let id = 1;
+const coordenadas = [];
+
+setInterval(function(){
+  document.getElementById('btnGuardar').click();
+  document.getElementById('automatico').innerText = "Guardardado automatico a las "+new Date().toLocaleTimeString();
+  cambiarColorGuardadoAutomatico();
+}, 120000);
+
+
+function cambiarColorGuardadoAutomatico(){
+  setTimeout(function(){
+    document.getElementById("automatico").className= "badge text-bg-light mx-2";
+  }, 5000);
+  document.getElementById("automatico").className = "badge text-bg-dark mx-2";
+}
+
 
 function MoverLibrementeConElMouse(e) {
   let posicionX = 0;
@@ -51,13 +67,16 @@ function colocarFondo(){
     if (file) {
       reader.readAsDataURL(archivo );
       reader.onloadend = function () {
+        let div1 = document.createElement("div");
+        div1.id = "divImg"+elemento;
         let img = document.createElement("img");
         img.src = reader.result;
         img.width = 300;
         img.id = elemento;
         img.className = "imagen"+elemento;
         img.style.zIndex = elemento;
-        document.getElementById("contenido").appendChild(img);
+        document.getElementById("contenido").appendChild(div1);
+        document.getElementById("divImg"+elemento).appendChild(img);
         MoverLibrementeConElMouse(elemento);
         id = elemento;
 
@@ -170,7 +189,7 @@ function colocarFondo(){
             <button class='btn btn-outline-light' id='textoB`+id+`' type='button'><i class='bi bi-type-bold'></i></button>
             <button class='btn btn-outline-light' id='textoS`+id+`' type='button'><i class='bi bi-type-strikethrough'></i></button>
             <button class='btn btn-outline-light' id='textoU`+id+`' type='button'><i class='bi bi-type-underline'></i></button>
-            <button class='btn btn-outline-light' id='textoI`+id+`' type='button'><i class='bi bi-type-italic'></i></button>
+            <button class='btn btn-outline-light' id='textoIT`+id+`' type='button'><i class='bi bi-type-italic'></i></button>
             </div>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
             <span>Seleccionar color</span>
@@ -221,7 +240,7 @@ function colocarFondo(){
           off.id = "offcanvasTextoContenedor"+id;
             document.getElementById("offcanvasTextoid").appendChild(off); 
 
-            document.getElementById("textoI"+id).addEventListener("click", italic);
+            document.getElementById("textoIT"+id).addEventListener("click", italic);
             document.getElementById("textoS"+id).addEventListener("click", textoTachado);
             document.getElementById("textoU"+id).addEventListener("click", textoSubrayado);
             document.getElementById("texto"+id).addEventListener("keyup", escribirTexto);
@@ -243,9 +262,9 @@ function colocarFondo(){
   }
 
   function italic(){
-    let id = this.id.substring(6);
+    let id = this.id.substring(7);
     if(document.getElementById(id).style.fontStyle == "oblique"){
-      document.getElementById(id).style.fontStyle = "none";
+      document.getElementById(id).style.fontStyle = "normal";
     }else{
       document.getElementById(id).style.fontStyle = "oblique";
     }
@@ -407,7 +426,7 @@ function eliminarMensaje(){
   }
 
  function guardarTransparente(){
-  let contenido = document.getElementById("contenido").style.background = "transparent";
+  document.getElementById("contenido").style.background = "transparent";
   html2canvas(document.querySelector("#contenido"),{backgroundColor: null}).then(canvas => {
     canvas.toBlob(function(blob) {
       saveAs(blob, "banner(sinfondo).png");
@@ -488,8 +507,216 @@ function preset3(){
   mensaje("Preset 3 cargado");
 }
 
+function guardarCoordenadasElementosPlantilla(){
+  coordenadas.splice(0, coordenadas.length);
+  let elementos = document.getElementById("contenido").children;
+  for (let i = 0; i < elementos.length; i++) {
+    let elemento = elementos[i];
+    let id = elemento.id;
+    let x = elemento.style.left;
+    let y = elemento.style.top;
+    let ancho = elemento.style.width;
+    let alto = elemento.style.height;
+    let color = elemento.style.color;
+    let fuente = elemento.style.fontFamily;
+    let tamano = elemento.style.fontSize;
+    let texto = elemento.innerHTML;
+    let coordenadasElemento = {
+      id: id,
+      x: x,
+      y: y,
+      ancho: ancho,
+      alto: alto,
+      color: color,
+      fuente: fuente,
+      tamano: tamano,
+      texto: texto
+    }
+    coordenadas.push(coordenadasElemento);
+  }
+  console.log(coordenadas);
+  document.getElementById('automatico').innerText = "Guardaste tus datos a las "+new Date().toLocaleTimeString();
+}
+
+  
+function cargarCoordenadasElementosPlantilla(){
+  if(document.getElementById("contenido").children.length > 0){
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Se eliminarán todos los elementos de la plantilla",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, cargar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        eliminarHijos("contenido");
+        eliminarHijos("offcanvasTextoid");
+        eliminarHijos("offcanvasImagenid");
+        eliminarHijos("input");
+        document.getElementById("contenido").style.backgroundImage = "none";
+        document.getElementById("contenido").style.backgroundColor = "#fff";  
+
+  for (let i = 0; i < coordenadas.length; i++) {
+    const element = coordenadas[i];
+    const elemento = element.id;
+    const idok = elemento.replace("div", "");
+    const x = element.x;
+    const y = element.y;
+    const texto = element.texto;
+    const div2 = document.createElement("div");
+    div2.innerHTML = texto;
+    div2.id = elemento;
+    div2.style.position = "absolute";
+    div2.style.left = x;
+    div2.style.top = y;
+    document.getElementById("contenido").appendChild(div2);
+    document.getElementById(elemento).addEventListener("dblclick", abrirEditor);
+    function abrirEditor() {
+      document.getElementById("textoEdit"+idok).click();
+    }
+    MoverLibrementeConElMouse(elemento);
+    let id = idok;
+
+      let div = document.createElement("div");
+        div.id = "divTexto"+id;
+        div.className = "input-group";
+        div.innerHTML = ` 
+        <div class='input-group mb-3'>
+        <span class='input-group-text text-bg-dark id='basic-addon1'><i class='bi bi-fonts'></i></span>
+        <input type='text' class='form-control text-bg-dark texto`+id+`' value='Texto' id='inputTexto`+id+`' disabled>
+        <button class='btn btn-dark mx-1' id='textoE`+id+`' type='button'><i class='bi bi-trash'></i></button> 
+        <button class='btn btn-dark' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasTextoid`+id+`" aria-controls="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i></button>`;
+
+        document.getElementById("input").appendChild(div);
+        document.getElementById("textoE"+id).addEventListener("click", eliminar);
+
+          let off = document.getElementById("offcanvasTextoid");
+          off = document.createElement("div");
+          off.innerHTML = `<div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasTextoid`+id+`" aria-labelledby="offcanvasTextoid`+id+`">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i> Editar texto</h5>
+          <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">   
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Orden</span>
+          </h6>
+          <button class='btn btn-outline-light' id='textoI`+id+`' type='button'><i class='bi bi-justify-left'></i></button>
+          <button class='btn btn-outline-light' id='textoC`+id+`' type='button'><i class='bi bi-justify'></i></button>
+          <button class='btn btn-outline-light' id='textoD`+id+`' type='button'><i class='bi bi-justify-right'></i></button>
+          <button class='btn btn-outline-light dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>Tamaño</button>
+          <ul class='dropdown-menu dropdown-menu-dark'>
+          <li><a class='dropdown-item ' href='#' id='textoTP`+id+`'>Pequeño</a></li>
+          <li><a class='dropdown-item ' id='textoTC`+id+`' >Chico</a></li>
+          <li><a class='dropdown-item ' id='textoTM`+id+`' >Mdiano</a></li>
+          <li><a class='dropdown-item ' id='textoTG`+id+`' >Grande</a></li>
+          <li><a class='dropdown-item ' id='textoTEG`+id+`' >Extra Grande</a></li>
+          <li><a class='dropdown-item ' id='textoTSG`+id+`' >Super Grande</a></li>
+          </ul>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Estilos</span>
+          </h6>
+          <div class="d-flex gap-1">
+          <button class='btn btn-outline-light' id='textoB`+id+`' type='button'><i class='bi bi-type-bold'></i></button>
+          <button class='btn btn-outline-light' id='textoS`+id+`' type='button'><i class='bi bi-type-strikethrough'></i></button>
+          <button class='btn btn-outline-light' id='textoU`+id+`' type='button'><i class='bi bi-type-underline'></i></button>
+          <button class='btn btn-outline-light' id='textoIT`+id+`' type='button'><i class='bi bi-type-italic'></i></button>
+          </div>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Seleccionar color</span>
+          </h6>
+          <input type='color' class='form-control form-control-color' id='colorInput`+id+`' value='#000000' title='Color' style='max-width: 50px;'>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Tipografia</span>
+          </h6>
+          <div class="d-flex">
+          <select class="form-select text-bg-dark" aria-label="" id='textoF`+id+`'>
+          <option selected>Seleccione una fuente</option>
+          <option value="Roboto">Roboto</option>
+          <option value="Poppins">Poppins</option>
+          <option value="Lato">Lato</option>
+          <option value="Oswald">Oswald</option>
+          <option value="Raleway">Raleway</option>
+          <option value="Open Sans">Open Sans</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="Lobster">Lobster</option>
+          <option value="Arial">Arial</option>
+          <option value="Times New Roman">Times New Roman</option>
+          <option value="Courier New">Courier New</option>
+          <option value="Verdana">Verdana</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Impact">Impact</option>
+          <option value="Tahoma">Tahoma</option>
+          <option value="Trebuchet MS">Trebuchet MS</option>
+          <option value="Comic Sans MS">Comic Sans MS</option>
+          <option value="Lucida Console">Lucida Console</option>
+          <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+          <option value="Palatino Linotype">Palatino Linotype</option>
+          <option value="Book Antiqua">Book Antiqua</option>
+          <option value="Garamond">Garamond</option>
+          <option value="MS Sans Serif">MS Sans Serif</option>
+          <option value="MS Serif">MS Serif</option>
+          <option value="Symbol">Symbol</option>
+          <option value="Webdings">Webdings</option>
+          <option value="Wingdings">Wingdings</option>
+          </select>
+          </div>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Editar texto</span>
+          </h6>
+          <textarea class="form-control text-bg-dark" placeholder="Texto" id="texto`+id+`" style="height: 100px"></textarea>
+        </div>
+        </div>
+        </div>`;
+        off.id = "offcanvasTextoContenedor"+id;
+          document.getElementById("offcanvasTextoid").appendChild(off); 
+
+          document.getElementById("textoIT"+id).addEventListener("click", italic);
+          document.getElementById("textoS"+id).addEventListener("click", textoTachado);
+          document.getElementById("textoU"+id).addEventListener("click", textoSubrayado);
+          document.getElementById("texto"+id).addEventListener("keyup", escribirTexto);
+          document.getElementById("colorInput"+id).addEventListener("change", colorTexto);
+          document.getElementById("textoI"+id).addEventListener("click", izquierda);
+          document.getElementById("textoC"+id).addEventListener("click", centrar);
+          document.getElementById("textoD"+id).addEventListener("click", derecha);
+          document.getElementById("textoB"+id).addEventListener("click", negrita);
+          document.getElementById("textoTP"+id).addEventListener("click", textoPequeno);
+          document.getElementById("textoTC"+id).addEventListener("click", textoChico);
+          document.getElementById("textoTM"+id).addEventListener("click", textoMediano);
+          document.getElementById("textoTG"+id).addEventListener("click", textoGrande);
+          document.getElementById("textoTEG"+id).addEventListener("click", textoExtraGrande);
+          document.getElementById("textoTSG"+id).addEventListener("click", textoSuperGrande);
+          document.getElementById("textoF"+id).addEventListener("change", cambiarFuente);
+
+            mensaje("Elemento Texto creado");
+          }
+        }
+
+      });
+
+      } else {
+        mensaje("No guardaste ningun dato en el editor");
+      }
+
+}
+
+function eliminarHijos(id){
+  var elemento = document.getElementById(id);
+  while (elemento.firstChild) {
+    elemento.removeChild(elemento.firstChild);
+  }
+}
 
 // Eventos
+
+// Eventos de los botones
+
+document.getElementById("btnGuardar").addEventListener("click", guardarCoordenadasElementosPlantilla);
+
+document.getElementById("btnCargar").addEventListener("click", cargarCoordenadasElementosPlantilla);
 
 let eliminarF = document.getElementById("eliminarFondo").addEventListener("click", eliminarFondo);
 

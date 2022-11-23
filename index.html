@@ -55,11 +55,24 @@
    
     <div class="container-fluid">
       <div class="row">
-        <nav id="sidebarMenu" class="col-md-4 col-lg-3 d-md-block bg-new sidebar collapse">
+        <nav id="sidebarMenu" class="col-sm-1 col-md-1 col-xl-1 col-xxl-1 d-block bg-new sidebar collapse" style="border-right: 2px solid #464646;">
+          <div class="position-sticky px-2 sidebar-sticky">
+          <div>
+            <div class="d-flex justify-content-center align-content-center align-items-center flex-column gap-2 mt-1" >
+              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#presets" aria-controls="presets"><i class="bi bi-grid-3x3-gap fs-4"></i> Presets</button>
+              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-images fs-4"></i>imagenes</button>
+              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-front fs-4"></i> iconos</button>
+              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-archive fs-4"></i> Formas</button>
+              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-camera2 fs-4"></i> Efectos</button>
+              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-11" type="button"  data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-gear fs-4"></i> Config</button>
+            </div>
+          </div>
+        </nav>
+
+        <nav id="sidebarMenu" class="col-sm-2 col-md-2 col-xl-2 col-xxl-2 d-block bg-new sidebar collapse">
           <div class="position-sticky pt-3 sidebar-sticky">
           <div>
             <div class="d-grid gap-2">
-              <button class="btn btn-primary mx-1 mt-1 btnPrimary"" type="button" data-bs-toggle="offcanvas" data-bs-target="#presets" aria-controls="presets"> Cargar Preset</button>
               <button class="btn btn-outline-light mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasElemento" aria-controls="offcanvasElemento" type="button">Agregar elemento</button>
             </div>
             <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasElemento" aria-labelledby="offcanvasElemento">
@@ -87,7 +100,7 @@
           </div>
         </nav>
 
-        <main class="col-md-8 ms-sm-auto col-lg-9 px-0">
+        <main class="col-sm-9 col-md-9 col-xl-9 col-xxl-9 px-0">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border" style="border-color: #000!important;background-color: #000000;">
              <div class="btn-toolbar mb-2 mb-md-0">
               <div class=" me-2">
@@ -218,6 +231,24 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Listo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="dato" tabindex="-1" aria-labelledby="dato" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="Modal">Desactivado </h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+           <p> Esta función esta desactivada por el momento</p>
+               </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
           </div>
         </div>

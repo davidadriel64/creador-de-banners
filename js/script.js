@@ -1,7 +1,7 @@
 
 // Funciones
 
-Swal.fire('Bienvenid@s al creador de banners', 'Para comenzar a crear un banner, debes seleccionar un tamaño de banner (por defecto esta en 600x600)', 'info');
+// Swal.fire('Bienvenid@s al creador de banners', 'Para comenzar a crear un banner, debes seleccionar un tamaño de banner (por defecto esta en 600x600)', 'info');
 
 mostrariconosdelarray();
 
@@ -86,8 +86,8 @@ function colocarFondo(){
           div.id = "divImagen"+elemento;
           div.innerHTML = `
           <div class='input-group mb-3'><span class='input-group-text text-bg-dark' id='basic-addon1' ><i class="bi bi-card-image"></i></span><input type='text' class='form-control text-bg-dark' value='Imagen' name='' id='imagen`+id+`' disabled >
-          <button class='btn btn-dark mx-1' id='imagenE`+id+`' type='button'><i class='bi bi-trash'></i></button>
-          <button class='btn btn-dark' id='imagenEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasImagenid`+id+`" aria-controls="offcanvasImagenid`+id+`"><i class='bi bi-pen'></i></button>`;
+          <button class='btn btn-dark mx-1 btnSidebar' id='imagenE`+id+`' type='button'><i class='bi bi-trash'></i></button>
+          <button class='btn btn-dark btnSidebar' id='imagenEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasImagenid`+id+`" aria-controls="offcanvasImagenid`+id+`"><i class='bi bi-pen'></i></button>`;
           
         document.getElementById("input").appendChild(div);
         document.getElementById("imagenE"+id).addEventListener("click", eliminarImagen);
@@ -155,8 +155,8 @@ function colocarFondo(){
           <div class='input-group mb-3'>
           <span class='input-group-text text-bg-dark id='basic-addon1'><i class='bi bi-fonts'></i></span>
           <input type='text' class='form-control text-bg-dark texto`+id+`' value='Texto' id='inputTexto`+id+`' disabled>
-          <button class='btn btn-dark mx-1' id='textoE`+id+`' type='button'><i class='bi bi-trash'></i></button> 
-          <button class='btn btn-dark' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasTextoid`+id+`" aria-controls="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i></button>`;
+          <button class='btn btn-dark mx-1 btnSidebar' id='textoE`+id+`' type='button'><i class='bi bi-trash'></i></button> 
+          <button class='btn btn-dark btnSidebar' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasTextoid`+id+`" aria-controls="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i></button>`;
 
           document.getElementById("input").appendChild(div);
           document.getElementById("textoE"+id).addEventListener("click", eliminar);
@@ -260,6 +260,8 @@ function colocarFondo(){
             document.getElementById("textoF"+id).addEventListener("change", cambiarFuente);
 
         mensaje("Elemento Texto creado");
+
+        document.getElementById("textoEdit"+id).click();
   
   }
 
@@ -590,8 +592,8 @@ function cargarCoordenadasElementosPlantilla(){
         <div class='input-group mb-3'>
         <span class='input-group-text text-bg-dark id='basic-addon1'><i class='bi bi-fonts'></i></span>
         <input type='text' class='form-control text-bg-dark texto`+id+`' value='Texto' id='inputTexto`+id+`' disabled>
-        <button class='btn btn-dark mx-1' id='textoE`+id+`' type='button'><i class='bi bi-trash'></i></button> 
-        <button class='btn btn-dark' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasTextoid`+id+`" aria-controls="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i></button>`;
+        <button class='btn btn-dark mx-1 btnSidebar' id='textoE`+id+`' type='button'><i class='bi bi-trash'></i></button> 
+        <button class='btn btn-dark btnSidebar' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasTextoid`+id+`" aria-controls="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i></button>`;
 
         document.getElementById("input").appendChild(div);
         document.getElementById("textoE"+id).addEventListener("click", eliminar);
@@ -2750,3 +2752,24 @@ function mostrariconosdelarray(){
 }
 
 mostrariconosdelarray();
+
+function detectarCelular(){
+        let navegador = navigator.userAgent;
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+         
+        }else{
+          document.getElementById("toggleMyModal").setAttribute("data-show", "true");
+        }
+}
+
+detectarCelular();
+
+
+function crearImagenPxbay(){
+    let imagen = document.getElementById("imagenpxbay").value;
+    let imagenpxbay = document.getElementById("imagenpxbay");
+    imagenpxbay = document.createElement("img");
+    imagenpxbay.classList = "img-fluid";
+    imagenpxbay.src = imagen;
+    document.getElementById("imagenpxbay").appendChild(imagenpxbay);
+}

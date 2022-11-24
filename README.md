@@ -30,6 +30,8 @@
 
 15) Guardado automatico de textos (falta fondos y imagenes) (puede fallar)
 
+16) Incorpora API pixbay con busqueda y paginador
 
+17) Se agregaron Iconos BOOSTRAP 5 
 
 

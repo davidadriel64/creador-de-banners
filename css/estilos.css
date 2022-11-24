@@ -121,3 +121,11 @@ div#contenido img:hover{
     color: #000;
     border: 1px solid #000;
 }
+
+.mostrar {
+    display: block;
+}
+
+.ocultar {
+    display: none;
+}

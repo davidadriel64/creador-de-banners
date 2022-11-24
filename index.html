@@ -60,8 +60,8 @@
           <div>
             <div class="d-flex justify-content-center align-content-center align-items-center flex-column gap-2 mt-1" >
               <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#presets" aria-controls="presets"><i class="bi bi-grid-3x3-gap fs-4"></i> Presets</button>
-              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-images fs-4"></i>imagenes</button>
-              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-front fs-4"></i> iconos</button>
+              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasImg" aria-controls="offcanvasImg"><i class="bi bi-images fs-4"></i>imagenes</button>
+              <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasIcon" aria-controls="offcanvasIcon"><i class="bi bi-front fs-4"></i> iconos</button>
               <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-archive fs-4"></i> Formas</button>
               <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-1" type="button" data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-camera2 fs-4"></i> Efectos</button>
               <button class="btn btn-dark btn-sm p-1 d-flex align-items-center flex-column gap-2 mt-11" type="button"  data-bs-toggle="modal" data-bs-target="#dato"><i class="bi bi-gear fs-4"></i> Config</button>
@@ -83,7 +83,7 @@
               <div class="offcanvas-body">
                 <div class="d-grid gap-2">
                   <button  type="button" class="btn btn-outline-light mx-1"  id="crearT"><i class='bi bi-fonts'></i> Crear Texto</button>
-                  <button type="button" class="btn btn-outline-light mx-1" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-card-image"></i> Crear Imagen</button>
+                  <button type="button" class="btn btn-outline-light mx-1" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-card-image"></i> Subir Imagen</button>
                 </div>
               </div>
             </div> 
@@ -102,7 +102,7 @@
 
         <main class="col-sm-9 col-md-9 col-xl-9 col-xxl-9 px-0">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border" style="border-color: #000!important;background-color: #000000;">
-             <div class="btn-toolbar mb-2 mb-md-0">
+             <div class="btn-toolbar mb-2 mb-md-0 ">
               <div class=" me-2">
                 <button type="button" class="btn mx-2 btnBlanco" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMedidas" aria-controls="offcanvasMedidas"><i class="bi bi-aspect-ratio"></i> Cambiar medidas</button>
                   <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasMedidas" aria-labelledby="offcanvasMedidas">
@@ -123,6 +123,22 @@
                         </div>
                         <div class="input-group mb-3">
                           <button type="button" class="btn btn-outline-light" id="cambiarMedidas">Cambiar medidas</button>
+                        </div>
+                    </div>
+                  </div>
+                 <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasImg" aria-labelledby="offcanvasImg">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasMedidas"><i class="bi bi-images"></i> imagenes</h5>
+                      <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <div class="input-group mb-3">
+                          <input class="form-control me-2" type="input" id="busqueda" placeholder="Buscar" >
+                          <button class="btn btn-outline-light" id="buscarok">Buscar</button>
+                        </div>
+                        <div id="imagenes" class="d-flex flex-wrap my-3">
+                        </div>
+                        <div id="paginador" class="d-flex justify-content-center align-items-center align-content-center g-4">
                         </div>
                     </div>
                   </div>
@@ -214,6 +230,15 @@
           <img class="preset img-fluid" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFondo" aria-controls="offcanvasFondo" id="preset2" src="img/preset2.png" class="card-img-top" style="height:100px; width:100px;" alt="...">
           <img class="preset img-fluid" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFondo" aria-controls="offcanvasFondo"id="preset3" src="img/preset3.png" class="card-img-top" style="height:100px; width:100px;" alt="...">
           
+      </div>
+    </div>
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasIcon" aria-labelledby="offcanvasIcon">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasIcon"><i class="bi bi-front fs-4"></i> Iconos</h5>
+        <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div id="iconos" class="d-flex flex-wrap"></div>
       </div>
     </div>
     <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="Modal" aria-hidden="true">

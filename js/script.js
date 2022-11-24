@@ -3,6 +3,8 @@
 
 Swal.fire('Bienvenid@s al creador de banners', 'Para comenzar a crear un banner, debes seleccionar un tamaño de banner (por defecto esta en 600x600)', 'info');
 
+mostrariconosdelarray();
+
 let id = 1;
 const coordenadas = [];
 

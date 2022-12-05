@@ -498,19 +498,30 @@ function eliminarFondo(){
 }
 
 function preset1(){
-  document.getElementById("contenido").style.backgroundImage = "url('./img/preset1.png')";
+  document.getElementById("contenido").style.backgroundImage = "url('./img/preset1.jpg')";
   mensaje("Preset 1 cargado");
 }
 
 function preset2(){
-  document.getElementById("contenido").style.backgroundImage = "url('./img/preset2.png')";
+  document.getElementById("contenido").style.backgroundImage = "url('./img/preset2.jpg')";
   mensaje("Preset 2 cargado");
 }
 
 function preset3(){
-  document.getElementById("contenido").style.backgroundImage = "url('./img/preset3.png')";
+  document.getElementById("contenido").style.backgroundImage = "url('./img/preset3.jpg')";
   mensaje("Preset 3 cargado");
 }
+
+function preset4(){
+  document.getElementById("contenido").style.backgroundImage = "url('./img/preset4.jpg')";
+  mensaje("Preset 4 cargado");
+}
+
+function preset5(){
+  document.getElementById("contenido").style.backgroundImage = "url('./img/preset5.jpg')";
+  mensaje("Preset 5 cargado");
+}
+
 
 function guardarCoordenadasElementosPlantilla(){
   coordenadas.splice(0, coordenadas.length);

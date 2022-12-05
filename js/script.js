@@ -804,6 +804,11 @@ let botonPreset2 = document.getElementById("preset2").addEventListener("click", 
 
 let botonPreset3 = document.getElementById("preset3").addEventListener("click", preset3);
 
+let botonPreset4 = document.getElementById("preset4").addEventListener("click", preset4);
+
+let botonPreset5 = document.getElementById("preset5").addEventListener("click", preset5);
+
+
 colorFondo.oninput = function() {
   document.getElementById("contenido").style.background = this.value;
 };
@@ -2763,17 +2768,6 @@ function mostrariconosdelarray(){
 }
 
 mostrariconosdelarray();
-
-function detectarCelular(){
-        let navegador = navigator.userAgent;
-        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
-         
-        }else{
-          document.getElementById("toggleMyModal").setAttribute("data-show", "true");
-        }
-}
-
-detectarCelular();
 
 
 function crearImagenPxbay(){

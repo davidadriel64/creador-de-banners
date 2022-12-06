@@ -71,6 +71,7 @@ function colocarFondo(){
       reader.onloadend = function () {
         let div1 = document.createElement("div");
         div1.id = "divImg"+elemento;
+        div1.style.width = "100%";
         let img = document.createElement("img");
         img.src = reader.result;
         img.width = 300;
@@ -128,6 +129,7 @@ function colocarFondo(){
   let elemento = id+1;
   let div1 = document.createElement("div");
       div1.id = "div"+elemento;
+      div1.style.width = "100%";
   let texto = document.createElement("p");
       texto.id = elemento;
       texto.style.padding = "10px";
@@ -525,6 +527,7 @@ function preset5(){
 
 function guardarCoordenadasElementosPlantilla(){
   coordenadas.splice(0, coordenadas.length);
+  let Fondos = document.getElementById("contenido");
   let elementos = document.getElementById("contenido").children;
   for (let i = 0; i < elementos.length; i++) {
     let elemento = elementos[i];
@@ -537,6 +540,7 @@ function guardarCoordenadasElementosPlantilla(){
     let fuente = elemento.style.fontFamily;
     let tamano = elemento.style.fontSize;
     let texto = elemento.innerHTML;
+    let fondo = Fondos.style.background;
     let coordenadasElemento = {
       id: id,
       x: x,
@@ -546,7 +550,8 @@ function guardarCoordenadasElementosPlantilla(){
       color: color,
       fuente: fuente,
       tamano: tamano,
-      texto: texto
+      texto: texto,
+      fondo : fondo,
     }
     coordenadas.push(coordenadasElemento);
   }
@@ -572,10 +577,8 @@ function cargarCoordenadasElementosPlantilla(){
         eliminarHijos("offcanvasTextoid");
         eliminarHijos("offcanvasImagenid");
 
-        document.getElementById("contenido").style.backgroundImage = "none";
-        document.getElementById("contenido").style.backgroundColor = "#fff";  
-
   for (let i = 0; i < coordenadas.length; i++) {
+    document.getElementById("contenido").style.background = coordenadas[i].fondo;
     const element = coordenadas[i];
     const elemento = element.id;
     const idok = elemento.replace("div", "");
@@ -588,6 +591,7 @@ function cargarCoordenadasElementosPlantilla(){
     div2.style.position = "absolute";
     div2.style.left = x;
     div2.style.top = y;
+    div2.style.width = "100%";
     document.getElementById("contenido").appendChild(div2);
     document.getElementById(elemento).addEventListener("dblclick", abrirEditor);
     function abrirEditor() {
@@ -602,7 +606,7 @@ function cargarCoordenadasElementosPlantilla(){
         div.innerHTML = ` 
         <div class='input-group mb-3'>
         <span class='input-group-text text-bg-dark id='basic-addon1'><i class='bi bi-fonts'></i></span>
-        <input type='text' class='form-control text-bg-dark texto`+id+`' value='Texto' id='inputTexto`+id+`' disabled>
+        <input type='text' class='form-control text-bg-dark texto`+id+`' value="texto" id='inputTexto`+id+`' disabled>
         <button class='btn btn-dark mx-1 btnSidebar' id='textoE`+id+`' type='button'><i class='bi bi-trash'></i></button> 
         <button class='btn btn-dark btnSidebar' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasTextoid`+id+`" aria-controls="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i></button>`;
 
@@ -798,15 +802,25 @@ let botonGuardarTransparente = document.getElementById("guardarTransparente").ad
 
 let botonGuardarJpg = document.getElementById("guardarJpg").addEventListener("click", guardarCanvaEnJpg);
 
-let botonPreset1 = document.getElementById("preset1").addEventListener("click", preset1);
+let botonPreset1 = document.getElementById("preset1").addEventListener("click", function(){
+  cargarPreset(1);
+});
 
-let botonPreset2 = document.getElementById("preset2").addEventListener("click", preset2);
+let botonPreset2 = document.getElementById("preset2").addEventListener("click", function(){
+  cargarPreset(2);
+});
 
-let botonPreset3 = document.getElementById("preset3").addEventListener("click", preset3);
+let botonPreset3 = document.getElementById("preset3").addEventListener("click", function(){
+  cargarPreset(3);
+});
 
-let botonPreset4 = document.getElementById("preset4").addEventListener("click", preset4);
+let botonPreset4 = document.getElementById("preset4").addEventListener("click", function(){
+  cargarPreset(4);
+});
 
-let botonPreset5 = document.getElementById("preset5").addEventListener("click", preset5);
+let botonPreset5 =document.getElementById("preset5").addEventListener("click", function(){
+  cargarPreset(5);
+});
 
 
 colorFondo.oninput = function() {
@@ -2777,4 +2791,248 @@ function crearImagenPxbay(){
     imagenpxbay.classList = "img-fluid";
     imagenpxbay.src = imagen;
     document.getElementById("imagenpxbay").appendChild(imagenpxbay);
+}
+
+
+const cordepreset = [
+  {
+      "id": "div2",
+      "x": "125.632px",
+      "y": "179.526px",
+      "ancho": "100%",
+      "alto": "",
+      "color": "#ffffff",
+      "fuente": "",
+      "tamano": "",
+      "textoInner": "50% OFF",
+      "texto": "<p id=\"2\" class=\"texto2\" style=\"padding: 10px; font-size: 85px; position: absolute; z-index: 2; color: rgb(255, 255, 255); font-family: Lato; font-weight: bold; text-shadow: rgba(0, 0, 0, 0.18) 9px 11px 5px;\">50% OFF</p>",
+      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+  },
+  {
+      "id": "div3",
+      "x": "183.053px",
+      "y": "519.211px",
+      "ancho": "100%",
+      "alto": "",
+      "color": "#ffffff",
+      "fuente": "",
+      "tamano": "",
+      "textoInner": "Av. Calle falsa 1234",
+      "texto": "<p id=\"3\" class=\"texto3\" style=\"padding: 10px; font-size: 25px; position: absolute; z-index: 3; color: rgb(255, 255, 255);\">Av. Calle falsa 1234</p>",
+      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+  },
+  {
+      "id": "div4",
+      "x": "208.316px",
+      "y": "474.158px",
+      "ancho": "100%",
+      "alto": "",
+      "color": "#ffffff",
+      "fuente": "",
+      "tamano": "",
+      "textoInner": "011-222-2222",
+      "texto": "<p id=\"4\" class=\"texto4\" style=\"padding: 10px; font-size: 25px; position: absolute; z-index: 3; color: rgb(255, 255, 255);\">011-222-2222</p>",
+      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+  },
+  {
+      "id": "div5",
+      "x": "137.684px",
+      "y": "287.579px",
+      "ancho": "100%",
+      "alto": "",
+      "color": "#ffffff",
+      "fuente": "",
+      "tamano": "",
+      "textoInner": "Panaderia los Guanacos",
+      "texto": "<p id=\"5\" class=\"texto5\" style=\"padding: 10px; font-size: 25px; position: absolute; z-index: 3; color: rgb(255, 255, 255); font-weight: bold; font-family: Poppins;\">Panaderia los Guanacos</p>",
+      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+  },
+  {
+      "id": "div6",
+      "x": "88.0526px",
+      "y": "349.421px",
+      "ancho": "100%",
+      "alto": "",
+      "color": "#ffffff",
+      "fuente": "",
+      "tamano": "",
+      "textoInner": "* Cupón válido hasta el 12/22<br>* Permitido para facturas<br>* no válido para compras menores a 200.000",
+      "texto": "<p id=\"6\" class=\"texto6\" style=\"padding: 10px; font-size: 20px; position: absolute; z-index: 6; font-style: normal; text-decoration: none; color: rgb(255, 255, 255); font-family: Roboto; text-align: center;\">* Cupón válido hasta el 12/22<br>* Permitido para facturas<br>* no válido para compras menores a 200.000</p>",
+      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+  }
+];
+
+
+
+function cargarPreset(p){
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Se eliminarán todos los elementos de la plantilla",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, cargar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+      if (p == 1){
+        document.getElementById("contenido").style.background = "url(\"./img/preset1.jpg\") rgb(255, 255, 255)";
+       } else if (p == 2){
+        document.getElementById("contenido").style.background = "url(\"./img/preset2.jpg\") rgb(255, 255, 255)";
+        } else if (p == 3){
+          document.getElementById("contenido").style.background = "url(\"./img/preset3.jpg\") rgb(255, 255, 255)";
+        } else if (p == 4){
+          document.getElementById("contenido").style.background = "url(\"./img/preset4.jpg\") rgb(255, 255, 255)";
+        } else if (p == 5){
+          document.getElementById("contenido").style.background = "url(\"./img/preset5.jpg\") rgb(255, 255, 255)";
+        } 
+
+        eliminarHijos("input");
+        eliminarHijos("contenido");
+        eliminarHijos("offcanvasTextoid");
+        eliminarHijos("offcanvasImagenid");
+
+  for (let i = 0; i < cordepreset.length; i++) {
+   
+    const element = cordepreset[i];
+    const elemento = element.id;
+    const idok = elemento.replace("div", "");
+    const x = element.x;
+    const y = element.y;
+    const texto = element.texto;
+    const textoInner = element.textoInner;
+    const color = element.color;
+    const div2 = document.createElement("div");
+    div2.innerHTML = texto;
+    div2.id = elemento;
+    div2.style.position = "absolute";
+    div2.style.left = x;
+    div2.style.top = y;
+    div2.style.width = "100%";
+    document.getElementById("contenido").appendChild(div2);
+    document.getElementById(elemento).addEventListener("dblclick", abrirEditor);
+    function abrirEditor() {
+      document.getElementById("textoEdit"+idok).click();
+    }
+    MoverLibrementeConElMouse(elemento);
+    let id = idok;
+
+      let div = document.createElement("div");
+        div.id = "divTexto"+id;
+        div.className = "input-group";
+        div.innerHTML = ` 
+        <div class='input-group mb-3'>
+        <span class='input-group-text text-bg-dark id='basic-addon1'><i class='bi bi-fonts'></i></span>
+        <input type='text' class='form-control text-bg-dark texto`+id+`' value="`+textoInner+`" id='inputTexto`+id+`' disabled>
+        <button class='btn btn-dark mx-1 btnSidebar' id='textoE`+id+`' type='button'><i class='bi bi-trash'></i></button> 
+        <button class='btn btn-dark btnSidebar' id='textoEdit`+id+`' type='button' data-bs-toggle="offcanvas" data-bs-target="#offcanvasTextoid`+id+`" aria-controls="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i></button>`;
+
+        document.getElementById("input").appendChild(div);
+        document.getElementById("textoE"+id).addEventListener("click", eliminar);
+
+          let off = document.getElementById("offcanvasTextoid");
+          off = document.createElement("div");
+          off.innerHTML = `<div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasTextoid`+id+`" aria-labelledby="offcanvasTextoid`+id+`">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasTextoid`+id+`"><i class='bi bi-pen'></i> Editar texto</h5>
+          <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">   
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Orden</span>
+          </h6>
+          <button class='btn btn-outline-light' id='textoI`+id+`' type='button'><i class='bi bi-justify-left'></i></button>
+          <button class='btn btn-outline-light' id='textoC`+id+`' type='button'><i class='bi bi-justify'></i></button>
+          <button class='btn btn-outline-light' id='textoD`+id+`' type='button'><i class='bi bi-justify-right'></i></button>
+          <button class='btn btn-outline-light dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>Tamaño</button>
+          <ul class='dropdown-menu dropdown-menu-dark'>
+          <li><a class='dropdown-item ' href='#' id='textoTP`+id+`'>Pequeño</a></li>
+          <li><a class='dropdown-item ' id='textoTC`+id+`' >Chico</a></li>
+          <li><a class='dropdown-item ' id='textoTM`+id+`' >Mdiano</a></li>
+          <li><a class='dropdown-item ' id='textoTG`+id+`' >Grande</a></li>
+          <li><a class='dropdown-item ' id='textoTEG`+id+`' >Extra Grande</a></li>
+          <li><a class='dropdown-item ' id='textoTSG`+id+`' >Super Grande</a></li>
+          </ul>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Estilos</span>
+          </h6>
+          <div class="d-flex gap-1">
+          <button class='btn btn-outline-light' id='textoB`+id+`' type='button'><i class='bi bi-type-bold'></i></button>
+          <button class='btn btn-outline-light' id='textoS`+id+`' type='button'><i class='bi bi-type-strikethrough'></i></button>
+          <button class='btn btn-outline-light' id='textoU`+id+`' type='button'><i class='bi bi-type-underline'></i></button>
+          <button class='btn btn-outline-light' id='textoIT`+id+`' type='button'><i class='bi bi-type-italic'></i></button>
+          </div>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Seleccionar color</span>
+          </h6>
+          <input type='color' class='form-control form-control-color' id='colorInput`+id+`' value='`+color+`' title='Color' style='max-width: 50px;'>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Tipografia</span>
+          </h6>
+          <div class="d-flex">
+          <select class="form-select text-bg-dark" aria-label="" id='textoF`+id+`'>
+          <option selected>Seleccione una fuente</option>
+          <option value="Roboto">Roboto</option>
+          <option value="Poppins">Poppins</option>
+          <option value="Lato">Lato</option>
+          <option value="Oswald">Oswald</option>
+          <option value="Raleway">Raleway</option>
+          <option value="Open Sans">Open Sans</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="Lobster">Lobster</option>
+          <option value="Arial">Arial</option>
+          <option value="Times New Roman">Times New Roman</option>
+          <option value="Courier New">Courier New</option>
+          <option value="Verdana">Verdana</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Impact">Impact</option>
+          <option value="Tahoma">Tahoma</option>
+          <option value="Trebuchet MS">Trebuchet MS</option>
+          <option value="Comic Sans MS">Comic Sans MS</option>
+          <option value="Lucida Console">Lucida Console</option>
+          <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+          <option value="Palatino Linotype">Palatino Linotype</option>
+          <option value="Book Antiqua">Book Antiqua</option>
+          <option value="Garamond">Garamond</option>
+          <option value="MS Sans Serif">MS Sans Serif</option>
+          <option value="MS Serif">MS Serif</option>
+          <option value="Symbol">Symbol</option>
+          <option value="Webdings">Webdings</option>
+          <option value="Wingdings">Wingdings</option>
+          </select>
+          </div>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
+          <span>Editar texto</span>
+          </h6>
+          <textarea class="form-control text-bg-dark" placeholder="`+textoInner+`" id="texto`+id+`" style="height: 100px">`+textoInner+`</textarea>
+        </div>
+        </div>
+        </div>`;
+        off.id = "offcanvasTextoContenedor"+id;
+          document.getElementById("offcanvasTextoid").appendChild(off); 
+
+          document.getElementById("textoIT"+id).addEventListener("click", italic);
+          document.getElementById("textoS"+id).addEventListener("click", textoTachado);
+          document.getElementById("textoU"+id).addEventListener("click", textoSubrayado);
+          document.getElementById("texto"+id).addEventListener("keyup", escribirTexto);
+          document.getElementById("colorInput"+id).addEventListener("change", colorTexto);
+          document.getElementById("textoI"+id).addEventListener("click", izquierda);
+          document.getElementById("textoC"+id).addEventListener("click", centrar);
+          document.getElementById("textoD"+id).addEventListener("click", derecha);
+          document.getElementById("textoB"+id).addEventListener("click", negrita);
+          document.getElementById("textoTP"+id).addEventListener("click", textoPequeno);
+          document.getElementById("textoTC"+id).addEventListener("click", textoChico);
+          document.getElementById("textoTM"+id).addEventListener("click", textoMediano);
+          document.getElementById("textoTG"+id).addEventListener("click", textoGrande);
+          document.getElementById("textoTEG"+id).addEventListener("click", textoExtraGrande);
+          document.getElementById("textoTSG"+id).addEventListener("click", textoSuperGrande);
+          document.getElementById("textoF"+id).addEventListener("change", cambiarFuente);
+
+            mensaje("Elemento Texto creado");
+          }
+        }
+
+      });
+
 }

@@ -198,7 +198,10 @@ function colocarFondo(){
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
             <span>Seleccionar color</span>
             </h6>
+            <div class="d-flex gap-1">
+            <button class='btn btn-outline-light' id='textoSom`+id+`' type='button'>Agregar sombra</button>
             <input type='color' class='form-control form-control-color' id='colorInput`+id+`' value='#000000' title='Color' style='max-width: 50px;'>
+            </div>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
             <span>Tipografia</span>
             </h6>
@@ -260,6 +263,7 @@ function colocarFondo(){
             document.getElementById("textoTEG"+id).addEventListener("click", textoExtraGrande);
             document.getElementById("textoTSG"+id).addEventListener("click", textoSuperGrande);
             document.getElementById("textoF"+id).addEventListener("change", cambiarFuente);
+            document.getElementById("textoSom"+id).addEventListener("click", sombraTexto);
 
         mensaje("Elemento Texto creado");
 
@@ -648,7 +652,10 @@ function cargarCoordenadasElementosPlantilla(){
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
           <span>Seleccionar color</span>
           </h6>
+          <div class="d-flex gap-1">
+          <button class='btn btn-outline-light' id='textoSom`+id+`' type='button'>Agregar sombra</button>
           <input type='color' class='form-control form-control-color' id='colorInput`+id+`' value='#000000' title='Color' style='max-width: 50px;'>
+          </div>
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
           <span>Tipografia</span>
           </h6>
@@ -710,6 +717,7 @@ function cargarCoordenadasElementosPlantilla(){
           document.getElementById("textoTEG"+id).addEventListener("click", textoExtraGrande);
           document.getElementById("textoTSG"+id).addEventListener("click", textoSuperGrande);
           document.getElementById("textoF"+id).addEventListener("change", cambiarFuente);
+          document.getElementById("textoSom"+id).addEventListener("click", sombraTexto);
 
             mensaje("Elemento Texto creado");
           }
@@ -776,6 +784,10 @@ function imagenesPixbay(page){
   })
 }
 
+function sombraTexto(){
+  let id = this.id.substring(8);
+  document.getElementById(id).style.textShadow = "9px 11px 5px rgba(0, 0, 0, 0.18)";
+}
 
 
 // Eventos
@@ -2966,7 +2978,10 @@ function cargarPreset(p){
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
           <span>Seleccionar color</span>
           </h6>
+          <div class="d-flex gap-1">
+          <button class='btn btn-outline-light' id='textoSom`+id+`' type='button'>Agregar sombra</button>
           <input type='color' class='form-control form-control-color' id='colorInput`+id+`' value='`+color+`' title='Color' style='max-width: 50px;'>
+          </div>
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
           <span>Tipografia</span>
           </h6>
@@ -3005,7 +3020,7 @@ function cargarPreset(p){
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-4 mb-3 text-muted text-uppercase">
           <span>Editar texto</span>
           </h6>
-          <textarea class="form-control text-bg-dark" placeholder="`+textoInner+`" id="texto`+id+`" style="height: 100px">`+textoInner+`</textarea>
+          <textarea class="form-control text-bg-dark" placeholder="Texto" id="texto`+id+`" style="height: 100px">`+textoInner+`</textarea>
         </div>
         </div>
         </div>`;
@@ -3028,6 +3043,7 @@ function cargarPreset(p){
           document.getElementById("textoTEG"+id).addEventListener("click", textoExtraGrande);
           document.getElementById("textoTSG"+id).addEventListener("click", textoSuperGrande);
           document.getElementById("textoF"+id).addEventListener("change", cambiarFuente);
+          document.getElementById("textoSom"+id).addEventListener("click", sombraTexto);
 
             mensaje("Elemento Texto creado");
           }

@@ -582,6 +582,9 @@ function cargarCoordenadasElementosPlantilla(){
         eliminarHijos("offcanvasImagenid");
 
   for (let i = 0; i < coordenadas.length; i++) {
+    if(coordenadas[i].id === "ejex" || coordenadas[i].id === "ejey"){
+      continue;
+    }else{       
     document.getElementById("contenido").style.background = coordenadas[i].fondo;
     const element = coordenadas[i];
     const elemento = element.id;
@@ -722,7 +725,8 @@ function cargarCoordenadasElementosPlantilla(){
             mensaje("Elemento Texto creado");
           }
         }
-
+        }
+        creardivEjes();
       });
 
       } else {
@@ -789,6 +793,14 @@ function sombraTexto(){
   document.getElementById(id).style.textShadow = "9px 11px 5px rgba(0, 0, 0, 0.18)";
 }
 
+function creardivEjes(){
+  let div = document.createElement("div");
+  div.id = "ejex";
+  document.getElementById("contenido").appendChild(div);
+  let div2 = document.createElement("div");
+  div2.id = "ejey";
+  document.getElementById("contenido").appendChild(div2);
+}
 
 // Eventos
 
@@ -832,6 +844,18 @@ let botonPreset4 = document.getElementById("preset4").addEventListener("click", 
 
 let botonPreset5 =document.getElementById("preset5").addEventListener("click", function(){
   cargarPreset(5);
+});
+
+let botonPreset6 = document.getElementById("preset6").addEventListener("click", function(){
+  cargarPreset(6);
+});
+
+let botonPreset7 = document.getElementById("preset7").addEventListener("click", function(){
+  cargarPreset(7);
+});
+
+let botonPreset8 = document.getElementById("preset8").addEventListener("click", function(){
+  cargarPreset(8);
 });
 
 
@@ -2818,7 +2842,7 @@ const cordepreset = [
       "tamano": "",
       "textoInner": "50% OFF",
       "texto": "<p id=\"2\" class=\"texto2\" style=\"padding: 10px; font-size: 85px; position: absolute; z-index: 2; color: rgb(255, 255, 255); font-family: Lato; font-weight: bold; text-shadow: rgba(0, 0, 0, 0.18) 9px 11px 5px;\">50% OFF</p>",
-      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+      "fondo": "url(\"./img/preset2.jpg\") rgb(255, 255, 255)"
   },
   {
       "id": "div3",
@@ -2831,7 +2855,7 @@ const cordepreset = [
       "tamano": "",
       "textoInner": "Av. Calle falsa 1234",
       "texto": "<p id=\"3\" class=\"texto3\" style=\"padding: 10px; font-size: 25px; position: absolute; z-index: 3; color: rgb(255, 255, 255);\">Av. Calle falsa 1234</p>",
-      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+      "fondo": "url(\"./img/preset3.jpg\") rgb(255, 255, 255)"
   },
   {
       "id": "div4",
@@ -2844,7 +2868,7 @@ const cordepreset = [
       "tamano": "",
       "textoInner": "011-222-2222",
       "texto": "<p id=\"4\" class=\"texto4\" style=\"padding: 10px; font-size: 25px; position: absolute; z-index: 3; color: rgb(255, 255, 255);\">011-222-2222</p>",
-      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+      "fondo": "url(\"./img/preset4.jpg\") rgb(255, 255, 255)"
   },
   {
       "id": "div5",
@@ -2857,7 +2881,7 @@ const cordepreset = [
       "tamano": "",
       "textoInner": "Panaderia los Guanacos",
       "texto": "<p id=\"5\" class=\"texto5\" style=\"padding: 10px; font-size: 25px; position: absolute; z-index: 3; color: rgb(255, 255, 255); font-weight: bold; font-family: Poppins;\">Panaderia los Guanacos</p>",
-      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+      "fondo": "url(\"./img/preset5.jpg\") rgb(255, 255, 255)"
   },
   {
       "id": "div6",
@@ -2870,7 +2894,7 @@ const cordepreset = [
       "tamano": "",
       "textoInner": "* Cupón válido hasta el 12/22<br>* Permitido para facturas<br>* no válido para compras menores a 200.000",
       "texto": "<p id=\"6\" class=\"texto6\" style=\"padding: 10px; font-size: 20px; position: absolute; z-index: 6; font-style: normal; text-decoration: none; color: rgb(255, 255, 255); font-family: Roboto; text-align: center;\">* Cupón válido hasta el 12/22<br>* Permitido para facturas<br>* no válido para compras menores a 200.000</p>",
-      "fondo": "url(\"./img/preset1.jpg\") rgb(255, 255, 255)"
+      "fondo": "url(\"./img/preset6.jpg\") rgb(255, 255, 255)"
   }
 ];
 
@@ -2898,6 +2922,12 @@ function cargarPreset(p){
           document.getElementById("contenido").style.background = "url(\"./img/preset4.jpg\") rgb(255, 255, 255)";
         } else if (p == 5){
           document.getElementById("contenido").style.background = "url(\"./img/preset5.jpg\") rgb(255, 255, 255)";
+        } else if (p == 6){
+          document.getElementById("contenido").style.background = "url(\"./img/preset6.jpg\") rgb(255, 255, 255)";
+        } else if (p == 7) {
+          document.getElementById("contenido").style.background = "url(\"./img/preset7.jpg\") rgb(255, 255, 255)";
+        } else if (p == 8) {
+          document.getElementById("contenido").style.background = "url(\"./img/preset8.jpg\") rgb(255, 255, 255)";
         } 
 
         eliminarHijos("input");
@@ -3047,8 +3077,10 @@ function cargarPreset(p){
 
             mensaje("Elemento Texto creado");
           }
+          creardivEjes();
         }
 
       });
 
 }
+

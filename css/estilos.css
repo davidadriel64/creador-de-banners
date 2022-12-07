@@ -140,3 +140,29 @@ div#contenido img:hover{
     background: var(--primary);
     ;
 }
+
+#ejex {
+    width: 100%; height: 1px; background-color: transparent;z-index: 200; position: absolute; border-top: 1px solid transparent; border-bottom: 1px solid transparent;
+}
+
+#ejey {
+    width: 1px; height: 100%; background-color: transparent;z-index:  200; position: absolute; border-left: 1px solid transparent; border-right: 1px solid transparent;
+}
+
+#ejex:hover {
+    background-color: var(--primary);
+    color: var(--primary);
+}
+
+#ejey:hover {
+    background-color: var(--primary);
+    color: var(--primary);
+}
+
+#ejex {
+    transition: 0.2s ease-out;
+}
+
+#ejey {
+    transition: 0.2s ease-out;
+}

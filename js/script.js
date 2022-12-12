@@ -858,6 +858,10 @@ let botonPreset8 = document.getElementById("preset8").addEventListener("click", 
   cargarPreset(8);
 });
 
+let botonPreset9 = document.getElementById("preset9").addEventListener("click", function(){
+  cargarPreset(9);
+});
+
 
 colorFondo.oninput = function() {
   document.getElementById("contenido").style.background = this.value;
@@ -2928,6 +2932,8 @@ function cargarPreset(p){
           document.getElementById("contenido").style.background = "url(\"./img/preset7.jpg\") rgb(255, 255, 255)";
         } else if (p == 8) {
           document.getElementById("contenido").style.background = "url(\"./img/preset8.jpg\") rgb(255, 255, 255)";
+        } else if (p == 9) {
+          document.getElementById("contenido").style.background = "url(\"./img/preset9.jpg\") rgb(255, 255, 255)";
         } 
 
         eliminarHijos("input");
